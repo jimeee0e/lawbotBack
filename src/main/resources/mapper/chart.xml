@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bit.project.lawbot.mapper.ChartMapper">
+    <select id="selectHarmResponse" parameterType="ChartDTO" resultType="ChartDTO" >
+        select * from harm_response where type = #{type} order by year desc
+    </select>
+
+    <select id="selectAttackerType" parameterType="ChartDTO" resultType="ChartDTO" >
+        select same_school_same_class, same_school_same_grade, same_school_other_grade, other_school, `unknown`,other from attacker_type where type = #{type} and year = #{year};
+    </select>
+
+    <select id="selectHarmPlace" parameterType="ChartDTO" resultType="ChartDTO" >
+        select * from harm_place where type = #{type} order by year desc
+    </select>
+
+    <select id="selectHarmType" parameterType="ChartDTO" resultType="ChartDTO" >
+        select * from harm_type where type = #{type} order by year desc
+    </select>
+</mapper>
