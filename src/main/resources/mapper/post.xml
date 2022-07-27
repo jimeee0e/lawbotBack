@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bit.project.lawbot.mapper.PostMapper">
+    <select id="selectPostList" parameterType="PostDTO" resultType="PostDTO" >
+        select * from post;
+    </select>
+
+    <insert id="insertPost" parameterType="PostDTO">
+        insert into post values(0,#{category},#{title},#{content},#{member_no}, now(), now(),1);
+    </insert>
+
+    <select id="selectPost" parameterType="PostDTO" resultType="PostDTO" >
+        select * from post where postid = #{postid};
+    </select>
+
+    <update id="deletePost" parameterType="PostDTO">
+        update post set isLive = 0 where postid=#{postid};
+    </update>
+
+    <update id="updatePost" parameterType="PostDTO">
+        update post set category=#{category},title = #{title}, content = #{content}, update_date=now() where postid=#{postid};
+    </update>
+</mapper>
