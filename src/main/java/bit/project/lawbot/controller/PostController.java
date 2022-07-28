@@ -25,8 +25,9 @@ public class PostController {
         return service.selectPostList(dto);
     }
 
-    @GetMapping("/get")
+    @PostMapping("/get")
     public PostDTO selectPost(@RequestBody PostDTO dto){
+        System.out.println(dto);
         return service.selectPost(dto);
     }
 
