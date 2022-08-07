@@ -26,7 +26,7 @@ public class PrecedentServiceImpl implements PrecedentService {
 		Pageable pageable = PageRequest.of(dto.getPage()-1,dto.getSize());
 		query.with(pageable);
 
-		List<PrecedentDTO> list = template.find(query,PrecedentDTO.class,"test");
+		List<PrecedentDTO> list = template.find(query,PrecedentDTO.class,"precedent");
 		return list;
 	}
 
@@ -35,7 +35,7 @@ public class PrecedentServiceImpl implements PrecedentService {
 		Criteria criteria = new Criteria("사건번호");
 		criteria.is(dto.get사건번호());
 		Query query = new Query(criteria);
-		return template.findOne(query, PrecedentDTO.class, "test");
+		return template.findOne(query, PrecedentDTO.class, "precedent");
 		//return template.findOne(query, PrecedentDTO.class, "precedent");
 	}
 
@@ -52,7 +52,7 @@ public class PrecedentServiceImpl implements PrecedentService {
 		Query query = new Query(criteria);
 
 		System.out.println("템플릿"+template);
-		TestDTO dto = template.findOne(query, TestDTO.class, "test");
+		TestDTO dto = template.findOne(query, TestDTO.class, "precedent");
 		System.out.println(dto);
 
 		return 0;
@@ -79,7 +79,7 @@ public class PrecedentServiceImpl implements PrecedentService {
 		Criteria criteria = new Criteria("_id");
 		criteria.is("62b10967bf47014238bc59c0");
 		Query query = new Query(criteria);
-		List<TestDTO> dtolist = template.findAll(TestDTO.class,"test");
+		List<TestDTO> dtolist = template.findAll(TestDTO.class,"precedent");
 
 		System.out.println("테스트"+dtolist.size());
 		return 0;
@@ -119,7 +119,7 @@ public class PrecedentServiceImpl implements PrecedentService {
 		query.with(pageable);
 
 		//List<TestDTO> dtolist = template.find(query,TestDTO.class);
-		List<TestDTO> dtolist = template.findAll(TestDTO.class,"test");
+		List<TestDTO> dtolist = template.findAll(TestDTO.class,"precedent");
 		for (int i = 0; i < dtolist.size() ; i++){
 			TestDTO dto = dtolist.get(i);
 			ArrayList<Map<String,String>> map = dto.get본문();
@@ -146,7 +146,7 @@ public class PrecedentServiceImpl implements PrecedentService {
 				template.remove(query11,"test");
 			}
 
-			List<TestDTO> dtolist2 = template.findAll(TestDTO.class,"test");
+			List<TestDTO> dtolist2 = template.findAll(TestDTO.class,"precedent");
 
 			System.out.println("다 끝낸 뒤 "+dtolist2.size());
 			//System.out.println("와호"+map);

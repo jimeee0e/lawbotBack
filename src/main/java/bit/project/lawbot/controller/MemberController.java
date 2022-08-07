@@ -3,6 +3,7 @@ package bit.project.lawbot.controller;
 import bit.project.lawbot.domain.MemberDTO;
 import bit.project.lawbot.service.MemberService;
 import bit.project.lawbot.service.MongoService;
+import bit.project.lawbot.util.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/member")
 public class MemberController {
-//    @Autowired
-//    private TokenProvider tokenProvider;
+    @Autowired
+    private TokenProvider tokenProvider;
     @Autowired
     MemberService service;
 
@@ -53,8 +54,8 @@ public class MemberController {
         MemberDTO user = service.loginMember(dto);
         if(user != null) {
             // 토큰 생성
-            //final String token = tokenProvider.create(user);
-            //user.setToken(token);
+            final String token = tokenProvider.create(user);
+            user.setToken(token);
             return ResponseEntity.ok().body(user);
         } else {
             return ResponseEntity

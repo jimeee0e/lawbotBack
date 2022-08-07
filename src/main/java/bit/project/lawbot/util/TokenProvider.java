@@ -1,5 +1,6 @@
 package bit.project.lawbot.util;
 
+import bit.project.lawbot.domain.MemberDTO;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -14,7 +15,7 @@ public class TokenProvider {
     private static final String SECRET_KEY = "NMA8JPctFuna59f5NMA8JPctFuna59f5NMA8JPctFuna59f5NMA8JPctFuna59f5NMA8JPctFuna59f5NMA8JPctFuna59f5";
 
     //public String create(MemberDTO dto) {
-    public String create() {
+    public String create(MemberDTO dto) {
         // 기한 지금으로부터 1일로 설정
         Date expiryDate = Date.from(
                 Instant.now()
@@ -40,6 +41,7 @@ public class TokenProvider {
                 // payload에 들어갈 내용
                 //.setSubject(dto.getId()) // sub : subject
                 .setIssuer("jimi") // iss  : Issuer
+                .setSubject(dto.getEmail())
                 .setIssuedAt(new Date()) // iat : issue at
                 .setExpiration(expiryDate) // exp : expiration
                 .compact();

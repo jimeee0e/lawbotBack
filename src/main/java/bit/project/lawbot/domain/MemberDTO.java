@@ -11,4 +11,5 @@ public class MemberDTO {
     private String role;
     private String platform;
     private int isLive;
+    private String token;
 }

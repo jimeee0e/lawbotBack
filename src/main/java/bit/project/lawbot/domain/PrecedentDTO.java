@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@Document(collection = "test")
+@Document(collection = "test")//???? 수정안했는데 되는경우있었음
 @Data
 public class PrecedentDTO {
     private String _id;
