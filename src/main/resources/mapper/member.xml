@@ -16,7 +16,7 @@
     </update>
 
     <update id="updateMember" parameterType="MemberDTO">
---         update member set isLive = 0 where pk_member_no=#{pk_member_no};
+         update member set name = #{name} where pk_member_no=#{pk_member_no};
     </update>
 
     <select id="loginMember" parameterType="MemberDTO" resultType="MemberDTO">

@@ -5,7 +5,7 @@ public interface MemberService {
 	public int insertMember(MemberDTO dto);
 	public MemberDTO selectMember(MemberDTO dto);
 	public MemberDTO deleteMember(MemberDTO dto);
-	public MemberDTO updateMember(MemberDTO dto);
+	public int updateMember(MemberDTO dto);
 	public MemberDTO loginMember(MemberDTO dto);
 	public int idCheckMember(MemberDTO dto);
 }

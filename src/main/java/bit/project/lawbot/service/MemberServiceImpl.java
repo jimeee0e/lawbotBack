@@ -23,15 +23,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public MemberDTO selectMember(MemberDTO dto) {
-		//임시
-		dto.setPk_member_no(5);
-		String rawPass = dto.getPass();
 		dto = mapper.selectMember(dto);
-		if(pwdEncoder.matches(rawPass, dto.getPass())){
-			System.out.println("맞음");
-		}else{
-			System.out.println("틀림");
-		}
 		return dto;
 	}
 	@Override
@@ -39,7 +31,7 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.deleteMember(dto);
 	}
 	@Override
-	public MemberDTO updateMember(MemberDTO dto) {return mapper.updateMember(dto);}
+	public int updateMember(MemberDTO dto) {return mapper.updateMember(dto);}
 	@Override
 	public MemberDTO loginMember(MemberDTO dto) {
 		String rawPass = dto.getPass();

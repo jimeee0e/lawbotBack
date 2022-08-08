@@ -44,7 +44,8 @@ public class MemberController {
     }
 
     @PostMapping("/modify")
-    public MemberDTO updateMember(@RequestBody MemberDTO dto) {
+    public int updateMember(@RequestBody MemberDTO dto) {
+        System.out.println(dto);
         return service.updateMember(dto);
     }
 
