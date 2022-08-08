@@ -7,6 +7,8 @@ import java.util.List;
 @Data
 public class ChartDTO {
     private long chart;
+    //컬럼
+    private String colName;
 
     //지울거
     private String student;

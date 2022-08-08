@@ -4,7 +4,7 @@
 
 <mapper namespace="bit.project.lawbot.mapper.ChartMapper">
     <select id="selectHarmResponse" parameterType="ChartDTO" resultType="ChartDTO" >
-        select * from harm_response where type = #{type} order by year desc
+        select type, ${colName},`year` from harm_response order by `year`;
     </select>
 
     <select id="selectAttackerType" parameterType="ChartDTO" resultType="ChartDTO" >
@@ -16,6 +16,6 @@
     </select>
 
     <select id="selectHarmType" parameterType="ChartDTO" resultType="ChartDTO" >
-        select * from harm_type where type = #{type} order by year desc
+        select * from harm_type where year = #{year}
     </select>
 </mapper>

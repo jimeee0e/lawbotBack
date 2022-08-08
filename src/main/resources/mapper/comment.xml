@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bit.project.lawbot.mapper.CommentMapper">
+    <select id="selectCommentList" parameterType="CommentDTO" resultType="CommentDTO" >
+        select * from comment where postid=#{postid} and islive=1;
+    </select>
+
+    <insert id="insertComment" parameterType="CommentDTO">
+        insert into comment values(0,#{postid},#{content},#{member_no},#{writer}, #{pass}, now(), now(),1);
+    </insert>
+
+    <select id="selectComment" parameterType="CommentDTO" resultType="CommentDTO" >
+        select * from comment where commentid = #{commentid};
+    </select>
+
+    <update id="deleteComment" parameterType="CommentDTO">
+        update comment set isLive = 0 where commentid=#{commentid};
+    </update>
+
+    <update id="updateComment" parameterType="CommentDTO">
+        update comment set category=#{category},title = #{title}, content = #{content}, update_date=now() where commentid=#{commentid};
+    </update>
+</mapper>
