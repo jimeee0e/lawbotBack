@@ -29,4 +29,5 @@ public class StatuteDTO {
     private int page = 1;
     private int size = 200;//임시
     private String queryType;
+    private String searchText;
 }

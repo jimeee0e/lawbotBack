@@ -1,6 +1,7 @@
 package bit.project.lawbot.service;
 
 import bit.project.lawbot.domain.PrecedentDTO;
+import bit.project.lawbot.domain.StatuteDTO;
 import bit.project.lawbot.domain.TestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -25,7 +26,7 @@ public class PrecedentServiceImpl implements PrecedentService {
 		Query query = new Query();
 		Pageable pageable = PageRequest.of(dto.getPage()-1,dto.getSize());
 		query.with(pageable);
-
+		query.addCriteria(Criteria.where("사건번호").regex(dto.getSearchText()));
 		List<PrecedentDTO> list = template.find(query,PrecedentDTO.class,"precedent");
 		return list;
 	}

@@ -23,11 +23,14 @@ public class StatuteServiceImpl implements StatuteService {
 
 	@Override
 	public List<StatuteDTO> selectStatuteList(StatuteDTO dto) {
+		System.out.println("디티오"+dto);
 		Query query = new Query();
 		Pageable pageable = PageRequest.of(dto.getPage()-1,dto.getSize());
 		query.with(pageable);
+		query.addCriteria(Criteria.where("조문내용").regex(dto.getSearchText()));
 
 		List<StatuteDTO> list = template.find(query,StatuteDTO.class,"statute");
+		System.out.println("하하하하하하하핳"+list);
 		return list;
 	}
 
