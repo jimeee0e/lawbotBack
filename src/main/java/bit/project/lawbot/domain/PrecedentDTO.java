@@ -26,5 +26,5 @@ public class PrecedentDTO {
     private int page = 1;
     private int size = 10;
     private String queryType;
-    private String SearchText;
+    private String SearchText = "";
 }
