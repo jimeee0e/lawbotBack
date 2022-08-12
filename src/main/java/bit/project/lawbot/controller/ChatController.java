@@ -28,6 +28,12 @@ public class ChatController {
         return dto;
     }
 
+    @PostMapping("/postTest")
+    public ChatDTO testggggggsss(@RequestBody ChatDTO dto){
+        System.out.println("테스트 옴");
+        dto.setMessage("하하하하하하하하ㅏdvh포스트포스트하하핳");
+        return dto;
+    }
     @PostMapping("/join")
     public int insertMember(@RequestBody MemberDTO dto){
         System.out.println("dto하하"+dto);
