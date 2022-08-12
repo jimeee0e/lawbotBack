@@ -1,5 +1,6 @@
 package bit.project.lawbot.controller;
 
+import bit.project.lawbot.domain.ChatDTO;
 import bit.project.lawbot.domain.MemberDTO;
 import bit.project.lawbot.service.MemberService;
 import bit.project.lawbot.service.MongoService;
@@ -18,6 +19,15 @@ public class ChatController {
 
     @Autowired
     MongoService testService;
+
+    @GetMapping("/test")
+    public ChatDTO testgg(){
+        ChatDTO dto = new ChatDTO();
+        System.out.println("테스트 옴");
+        dto.setMessage("하하하하하하하하ㅏ하하핳");
+        return dto;
+    }
+
     @PostMapping("/join")
     public int insertMember(@RequestBody MemberDTO dto){
         System.out.println("dto하하"+dto);
