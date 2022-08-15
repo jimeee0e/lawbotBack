@@ -3,23 +3,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="bit.project.lawbot.mapper.PostMapper">
-    <select id="selectPostList" parameterType="PostDTO" resultType="PostDTO" >
-        select * from post;
+    <select id="selectPostList" parameterType="BaseDTO" resultType="PostDTO" >
+        select * from post limit ${paging.start}, #{paging.size};
+    </select>
+
+    <select id="selectPostListCount" parameterType="BaseDTO" resultType="int" >
     </select>
 
     <insert id="insertPost" parameterType="PostDTO">
-        insert into post values(0,#{category},#{title},#{content},#{member_no}, now(), now(),1);
+        insert into post values(0, #{category}, #{title}, #{content}, #{member_no}, #{writer}, #{pass}, #{ip}, now(), now(), 1);
     </insert>
 
     <select id="selectPost" parameterType="PostDTO" resultType="PostDTO" >
-        select * from post where postid = #{postid};
+        select * from post where post_idx = #{post_idx};
     </select>
 
     <update id="deletePost" parameterType="PostDTO">
-        update post set isLive = 0 where postid=#{postid};
+        update post set isLive = 0 where post_idx=#{post_idx};
     </update>
 
     <update id="updatePost" parameterType="PostDTO">
-        update post set category=#{category},title = #{title}, content = #{content}, update_date=now() where postid=#{postid};
+        update post set category=#{category}, title = #{title}, content = #{content}, update_date=now() where post_idx = #{post_idx};
     </update>
+
+    <select id="selectPostWriter" parameterType="Long" resultType="Long">
+        select member_no from post where post_idx = #{post_idx};
+    </select>
 </mapper>

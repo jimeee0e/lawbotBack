@@ -11,5 +11,4 @@ public class ChatDTO {
     private long member_no;
     private String message;
     private Date date;
-    private int islive;
 }

@@ -1,5 +1,6 @@
 package bit.project.lawbot.controller;
 
+import bit.project.lawbot.domain.BaseDTO;
 import bit.project.lawbot.domain.MemberDTO;
 import bit.project.lawbot.domain.PostDTO;
 import bit.project.lawbot.service.MemberService;
@@ -20,10 +21,15 @@ public class PostController {
     PostService service;
 
     @PostMapping("/getList")
-    public List<PostDTO> selectPostList(@RequestBody PostDTO dto){
+    public BaseDTO<PostDTO> selectPostList(@RequestBody BaseDTO<PostDTO> dto){
         System.out.println("dto하하"+dto);
         return service.selectPostList(dto);
     }
+//    @PostMapping("/getList")
+//    public List<PostDTO> selectPostList(@RequestBody PostDTO dto){
+//        System.out.println("dto하하"+dto);
+//        return service.selectPostList(dto);
+//    }
 
     @PostMapping("/get")
     public PostDTO selectPost(@RequestBody PostDTO dto){

@@ -13,4 +13,5 @@ public interface CommentMapper {
 	public CommentDTO selectComment(CommentDTO dto);
 	public CommentDTO deleteComment(CommentDTO dto);
 	public CommentDTO updateComment(CommentDTO dto);
+	public Long selectCommentWriter(long comment_idx);
 }

@@ -1,5 +1,6 @@
 package bit.project.lawbot.controller;
 
+import bit.project.lawbot.domain.AuthDTO;
 import bit.project.lawbot.domain.MemberDTO;
 import bit.project.lawbot.service.MemberService;
 import bit.project.lawbot.service.MongoService;
@@ -88,14 +89,19 @@ public class MemberController {
     public int idCheckMember(@RequestBody MemberDTO dto) {
         return service.idCheckMember(dto);
     }
+
     @PostMapping("/googleLogin")
-    public int googleLogin(@RequestBody MemberDTO dto) {
-        return 0;//임시로지움
+    public int googleLogin(@RequestBody AuthDTO dto) {
+
+        return service.googleLogin(dto);//임시로지움
     }
 
     @PostMapping("/kakaoLogin")
-    public int kakaoLogin(@RequestBody MemberDTO dto) {
-        return 0;//임시로지움
+    public int kakaoLogin(@RequestBody AuthDTO dto) {
+
+
+
+        return service.kakaoLogin(dto);
     }
     @GetMapping("/mongo")
     public int testMongo() {

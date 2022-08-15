@@ -4,22 +4,26 @@
 
 <mapper namespace="bit.project.lawbot.mapper.CommentMapper">
     <select id="selectCommentList" parameterType="CommentDTO" resultType="CommentDTO" >
-        select * from comment where postid=#{postid} and islive=1;
+        select * from comment where post_idx = #{post_idx} and islive = 1 limit ${paging.start}, #{paging.size};
     </select>
 
-    <insert id="insertComment" parameterType="CommentDTO">
-        insert into comment values(0,#{postid},#{content},#{member_no},#{writer}, #{pass}, now(), now(),1);
+    <insert id="insertComment" parameterType="CommentDTO" useGeneratedKeys="true" keyProperty="comment_idx">
+        insert into comment values(0, #{post_idx}, #{parent_comment_idx}, #{level}, #{content}, #{member_no}, #{writer}, #{pass}, #{ip}, now(), now(), 1);
     </insert>
 
     <select id="selectComment" parameterType="CommentDTO" resultType="CommentDTO" >
-        select * from comment where commentid = #{commentid};
+        select * from comment where comment_idx = #{comment_idx};
     </select>
 
     <update id="deleteComment" parameterType="CommentDTO">
-        update comment set isLive = 0 where commentid=#{commentid};
+        update comment set isLive = 0 where comment_idx=#{comment_idx};
     </update>
 
     <update id="updateComment" parameterType="CommentDTO">
-        update comment set category=#{category},title = #{title}, content = #{content}, update_date=now() where commentid=#{commentid};
+        update comment set category=#{category}, title = #{title}, content = #{content}, update_date=now() where comment_idx = #{comment_idx};
     </update>
+
+    <select id="selectCommentWriter" parameterType="Long" resultType="Long">
+        select member_no from comment where comment_idx = #{comment_idx};
+    </select>
 </mapper>

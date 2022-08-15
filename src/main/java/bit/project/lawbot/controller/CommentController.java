@@ -33,7 +33,7 @@ public class CommentController {
     }
 
     @PostMapping("/write")
-    public int insertComment(@RequestBody CommentDTO dto) {
+    public long insertComment(@RequestBody CommentDTO dto) {
         return service.insertComment(dto);
     }
 

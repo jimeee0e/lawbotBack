@@ -12,14 +12,14 @@
     </insert>
 
     <select id="selectPost" parameterType="PostDTO" resultType="PostDTO" >
-        select * from post where postid = #{postid};
+        select * from post where post_idx = #{post_idx};
     </select>
 
     <update id="deletePost" parameterType="PostDTO">
-        update post set isLive = 0 where postid=#{postid};
+        update post set isLive = 0 where post_idx=#{post_idx};
     </update>
 
     <update id="updatePost" parameterType="PostDTO">
-        update post set category=#{category},title = #{title}, content = #{content}, update_date=now() where postid=#{postid};
+        update post set category=#{category},title = #{title}, content = #{content}, update_date=now() where post_idx=#{post_idx};
     </update>
 </mapper>

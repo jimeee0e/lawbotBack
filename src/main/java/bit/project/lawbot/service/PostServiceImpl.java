@@ -1,5 +1,6 @@
 package bit.project.lawbot.service;
 
+import bit.project.lawbot.domain.BaseDTO;
 import bit.project.lawbot.domain.MemberDTO;
 import bit.project.lawbot.domain.PostDTO;
 import bit.project.lawbot.mapper.MemberMapper;
@@ -16,8 +17,9 @@ public class PostServiceImpl implements PostService {
 	PostMapper mapper;
 
 	@Override
-	public List<PostDTO> selectPostList(PostDTO dto) {
-		return mapper.selectPostList(dto);
+	public BaseDTO<PostDTO> selectPostList(BaseDTO<PostDTO> dto) {
+		dto.setList(mapper.selectPostList(dto));
+		return dto;
 	}
 
 	@Override

@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Data
 public class WordDTO {
-    private long postid;
+    private long post_idx;
     private String category;
     private String title;
     private String content;
