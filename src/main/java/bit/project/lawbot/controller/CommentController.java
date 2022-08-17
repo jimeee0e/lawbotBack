@@ -34,6 +34,8 @@ public class CommentController {
 
     @PostMapping("/write")
     public long insertComment(@RequestBody CommentDTO dto) {
+
+        System.out.println("댓글쓰기 "+ dto);
         return service.insertComment(dto);
     }
 

@@ -24,9 +24,9 @@ public class PrecedentServiceImpl implements PrecedentService {
 	@Override
 	public List<PrecedentDTO> selectPrecedentList(PrecedentDTO dto) {
 		Query query = new Query();
-		Pageable pageable = PageRequest.of(dto.getPage()-1,dto.getSize());
+		Pageable pageable = PageRequest.of(dto.getPage()-1, dto.getSize());
 		query.with(pageable);
-		query.addCriteria(Criteria.where("사건번호").regex(dto.getSearchText()));
+		query.addCriteria(Criteria.where("본문").elemMatch(Criteria.where("이유").regex(dto.getSearchText())));
 		List<PrecedentDTO> list = template.find(query,PrecedentDTO.class,"precedent");
 		return list;
 	}

@@ -4,10 +4,11 @@
 
 <mapper namespace="bit.project.lawbot.mapper.PostMapper">
     <select id="selectPostList" parameterType="BaseDTO" resultType="PostDTO" >
-        select * from post limit ${paging.start}, #{paging.size};
+        select * from post where islive = 1 limit ${paging.start}, #{paging.size};
     </select>
 
     <select id="selectPostListCount" parameterType="BaseDTO" resultType="int" >
+        select count(*) from post
     </select>
 
     <insert id="insertPost" parameterType="PostDTO">

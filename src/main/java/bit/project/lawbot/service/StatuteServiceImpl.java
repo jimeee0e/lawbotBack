@@ -27,8 +27,12 @@ public class StatuteServiceImpl implements StatuteService {
 		Query query = new Query();
 		Pageable pageable = PageRequest.of(dto.getPage()-1,dto.getSize());
 		query.with(pageable);
-		query.addCriteria(Criteria.where("조문내용").regex(dto.getSearchText()));
-
+		Criteria cri = new Criteria();
+		Criteria[] cri_arr = new Criteria[2];
+		cri.orOperator(Criteria.where("항").elemMatch(Criteria.where("항내용").regex(dto.getSearchText())),
+				Criteria.where("조문내용").regex(dto.getSearchText()),
+				Criteria.where("항").elemMatch(Criteria.where("호").elemMatch(Criteria.where("호내용")).regex(dto.getSearchText())));
+		query.addCriteria(cri);
 		List<StatuteDTO> list = template.find(query,StatuteDTO.class,"statute");
 		System.out.println("하하하하하하하핳"+list);
 		return list;

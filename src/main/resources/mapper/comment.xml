@@ -4,7 +4,7 @@
 
 <mapper namespace="bit.project.lawbot.mapper.CommentMapper">
     <select id="selectCommentList" parameterType="CommentDTO" resultType="CommentDTO" >
-        select * from comment where post_idx = #{post_idx} and islive = 1 limit ${paging.start}, #{paging.size};
+        select * from comment where post_idx = #{post_idx} and islive = 1;
     </select>
 
     <insert id="insertComment" parameterType="CommentDTO" useGeneratedKeys="true" keyProperty="comment_idx">
