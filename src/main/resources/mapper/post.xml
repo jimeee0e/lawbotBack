@@ -8,7 +8,7 @@
     </select>
 
     <select id="selectPostListCount" parameterType="BaseDTO" resultType="int" >
-        select count(*) from post
+        select count(*) from post where islive = 1
     </select>
 
     <insert id="insertPost" parameterType="PostDTO">
@@ -24,7 +24,7 @@
     </update>
 
     <update id="updatePost" parameterType="PostDTO">
-        update post set category=#{category}, title = #{title}, content = #{content}, update_date=now() where post_idx = #{post_idx};
+        update post set category=#{category}, writer= #{writer}, title = #{title}, content = #{content}, update_date = now() where post_idx = #{post_idx};
     </update>
 
     <select id="selectPostWriter" parameterType="Long" resultType="Long">

@@ -11,7 +11,21 @@ public class PagingDTO {
     private int page = 1;
     private int size = 10;
 
+    private int maxPage;
+    private int total;
+
+    private String searchText;
+
     public int start(){
         return (page - 1) * size;
+    }
+    public void settingMaxPage() {
+        this.maxPage = total / size;
+        if(total % size > 0){
+            this.maxPage++;
+        }
+    }
+    public PagingDTO(){
+        this.searchText = "";
     }
 }

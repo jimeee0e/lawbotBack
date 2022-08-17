@@ -55,12 +55,12 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public CommentDTO deleteComment(CommentDTO dto) {
+	public int deleteComment(CommentDTO dto) {
 		return mapper.deleteComment(dto);
 	}
 
 	@Override
-	public CommentDTO updateComment(CommentDTO dto) {
+	public int updateComment(CommentDTO dto) {
 		return mapper.updateComment(dto);
 	}
 }

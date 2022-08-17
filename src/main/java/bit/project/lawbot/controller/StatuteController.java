@@ -1,5 +1,6 @@
 package bit.project.lawbot.controller;
 
+import bit.project.lawbot.domain.BaseDTO;
 import bit.project.lawbot.domain.PrecedentDTO;
 import bit.project.lawbot.domain.StatuteDTO;
 import bit.project.lawbot.service.StatuteService;
@@ -18,7 +19,7 @@ public class StatuteController {
     @Autowired
     StatuteService service;
     @PostMapping("/getList")
-    public List<StatuteDTO> selectStatuteList(@RequestBody StatuteDTO dto) {
+    public BaseDTO<StatuteDTO> selectStatuteList(@RequestBody BaseDTO<StatuteDTO> dto) {
         return service.selectStatuteList(dto);
     }
 }

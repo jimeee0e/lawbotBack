@@ -1,5 +1,6 @@
 package bit.project.lawbot.controller;
 
+import bit.project.lawbot.domain.BaseDTO;
 import bit.project.lawbot.domain.ChartDTO;
 import bit.project.lawbot.domain.PrecedentDTO;
 import bit.project.lawbot.service.ChartService;
@@ -16,7 +17,7 @@ public class PrecedentController {
     @Autowired
     PrecedentService service;
     @PostMapping("/getList")
-    public List<PrecedentDTO> selectPrecedentList(@RequestBody PrecedentDTO dto) {
+    public BaseDTO<PrecedentDTO> selectPrecedentList(@RequestBody BaseDTO dto) {
         return service.selectPrecedentList(dto);
     }
 

@@ -1,5 +1,6 @@
 package bit.project.lawbot.service;
 
+import bit.project.lawbot.domain.BaseDTO;
 import bit.project.lawbot.domain.PrecedentDTO;
 import bit.project.lawbot.domain.StatuteDTO;
 import bit.project.lawbot.domain.TestDTO;
@@ -22,20 +23,39 @@ public class StatuteServiceImpl implements StatuteService {
 	private MongoTemplate template;
 
 	@Override
-	public List<StatuteDTO> selectStatuteList(StatuteDTO dto) {
-		System.out.println("디티오"+dto);
+	public BaseDTO<StatuteDTO> selectStatuteList(BaseDTO<StatuteDTO> dto) {
 		Query query = new Query();
-		Pageable pageable = PageRequest.of(dto.getPage()-1,dto.getSize());
-		query.with(pageable);
 		Criteria cri = new Criteria();
-		Criteria[] cri_arr = new Criteria[2];
-		cri.orOperator(Criteria.where("항").elemMatch(Criteria.where("항내용").regex(dto.getSearchText())),
-				Criteria.where("조문내용").regex(dto.getSearchText()),
-				Criteria.where("항").elemMatch(Criteria.where("호").elemMatch(Criteria.where("호내용")).regex(dto.getSearchText())));
+		cri.orOperator(
+				Criteria.where("항").elemMatch(Criteria.where("항내용").regex(dto.getPaging().getSearchText())),
+				Criteria.where("조문내용").regex(dto.getPaging().getSearchText())
+				//Criteria.where("항").elemMatch(Criteria.where("호").elemMatch(Criteria.where("호내용").regex(dto.getPaging().getSearchText()))
+		);
 		query.addCriteria(cri);
-		List<StatuteDTO> list = template.find(query,StatuteDTO.class,"statute");
-		System.out.println("하하하하하하하핳"+list);
-		return list;
+		dto.getPaging().setTotal((int) template.count(query,StatuteDTO.class));
+		dto.getPaging().settingMaxPage();
+
+		Pageable pageable = PageRequest.of(dto.getPaging().getPage()-1,dto.getPaging().getSize());
+		query.with(pageable);
+		dto.setList(template.find(query,StatuteDTO.class,"statute"));
+
+
+//		Query query = new Query();
+//		Criteria cri = new Criteria();
+//		cri.orOperator(
+//				Criteria.where("항").elemMatch(Criteria.where("항내용").regex(dto.getPaging().getSearchText())),
+//				Criteria.where("조문내용").regex(dto.getPaging().getSearchText()),
+//				Criteria.where("항").elemMatch(Criteria.where("호").elemMatch(Criteria.where("호내용").regex(dto.getPaging().getSearchText())))
+//		);
+//		query.addCriteria(cri);
+//		dto.setList(template.find(query,StatuteDTO.class,"statute"));
+//
+//		Pageable pageable = PageRequest.of(dto.getPaging().getPage()-1,dto.getPaging().getSize());
+//		query.with(pageable);
+//
+//		dto.getPaging().setTotal((int) template.count(query,StatuteDTO.class));
+//		dto.getPaging().settingMaxPage();
+		return dto;
 	}
 
 	@Override

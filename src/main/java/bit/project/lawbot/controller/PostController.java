@@ -43,12 +43,12 @@ public class PostController {
     }
 
     @PostMapping("/delete")
-    public PostDTO deletePost(@RequestBody PostDTO dto) {
+    public int deletePost(@RequestBody PostDTO dto) {
         return service.deletePost(dto);
     }
 
     @PostMapping("/update")
-    public PostDTO updatePost(@RequestBody PostDTO dto) {
+    public int updatePost(@RequestBody PostDTO dto) {
         return service.updatePost(dto);
     }
 }

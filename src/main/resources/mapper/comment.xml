@@ -20,7 +20,7 @@
     </update>
 
     <update id="updateComment" parameterType="CommentDTO">
-        update comment set category=#{category}, title = #{title}, content = #{content}, update_date=now() where comment_idx = #{comment_idx};
+        update comment set content=#{content}, writer = #{writer}, update_date = now() where comment_idx = #{comment_idx};
     </update>
 
     <select id="selectCommentWriter" parameterType="Long" resultType="Long">

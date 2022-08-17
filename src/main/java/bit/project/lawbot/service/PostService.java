@@ -10,6 +10,6 @@ public interface PostService {
 	public BaseDTO<PostDTO> selectPostList(BaseDTO<PostDTO> dto);
 	public int insertPost(PostDTO dto);
 	public PostDTO selectPost(PostDTO dto);
-	public PostDTO deletePost(PostDTO dto);
-	public PostDTO updatePost(PostDTO dto);
+	public int deletePost(PostDTO dto);
+	public int updatePost(PostDTO dto);
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@Document(collection = "test")//???? 수정안했는데 되는경우있었음
+@Document(collection = "precedent")//???? 수정안했는데 되는경우있었음
 @Data
 public class PrecedentDTO {
     private String _id;
@@ -22,9 +22,4 @@ public class PrecedentDTO {
     //private ArrayList<Map<String,String>> 각주; 로 하면 안됨
     private Map<String,String> 각주;
     private List<String> 참조조문;
-
-    private int page = 1;
-    private int size = 10;
-    private String queryType;
-    private String SearchText = "";
 }

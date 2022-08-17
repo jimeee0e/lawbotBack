@@ -1,5 +1,6 @@
 package bit.project.lawbot.service;
 
+import bit.project.lawbot.domain.BaseDTO;
 import bit.project.lawbot.domain.PrecedentDTO;
 import bit.project.lawbot.domain.StatuteDTO;
 import bit.project.lawbot.domain.TestDTO;
@@ -22,13 +23,20 @@ public class PrecedentServiceImpl implements PrecedentService {
 	private MongoTemplate template;
 
 	@Override
-	public List<PrecedentDTO> selectPrecedentList(PrecedentDTO dto) {
+	public BaseDTO<PrecedentDTO> selectPrecedentList(BaseDTO<PrecedentDTO> dto) {
 		Query query = new Query();
-		Pageable pageable = PageRequest.of(dto.getPage()-1, dto.getSize());
+		query.addCriteria(Criteria.where("본문").elemMatch(Criteria.where("이유").regex(dto.getPaging().getSearchText())));
+
+		dto.getPaging().setTotal((int) template.count(query,PrecedentDTO.class));
+		dto.getPaging().settingMaxPage();
+
+		System.out.println(dto + " 판례디티오 검사" +template.count(query,PrecedentDTO.class));
+
+		Pageable pageable = PageRequest.of(dto.getPaging().getPage()-1, dto.getPaging().getSize());
 		query.with(pageable);
-		query.addCriteria(Criteria.where("본문").elemMatch(Criteria.where("이유").regex(dto.getSearchText())));
-		List<PrecedentDTO> list = template.find(query,PrecedentDTO.class,"precedent");
-		return list;
+		dto.setList(template.find(query,PrecedentDTO.class,"precedent"));
+		
+		return dto;
 	}
 
 	@Override

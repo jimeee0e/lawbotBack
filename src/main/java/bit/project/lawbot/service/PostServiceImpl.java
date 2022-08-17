@@ -19,6 +19,9 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public BaseDTO<PostDTO> selectPostList(BaseDTO<PostDTO> dto) {
 		dto.setList(mapper.selectPostList(dto));
+		dto.getPaging().setTotal(mapper.selectPostListCount(dto));
+		dto.getPaging().settingMaxPage();
+		System.out.println("포스트셀렉트에서"+dto);
 		return dto;
 	}
 
@@ -33,12 +36,12 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public PostDTO deletePost(PostDTO dto) {
+	public int deletePost(PostDTO dto) {
 		return mapper.deletePost(dto);
 	}
 
 	@Override
-	public PostDTO updatePost(PostDTO dto) {
+	public int updatePost(PostDTO dto) {
 		return mapper.updatePost(dto);
 	}
 }

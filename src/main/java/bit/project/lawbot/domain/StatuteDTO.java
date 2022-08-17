@@ -22,12 +22,4 @@ public class StatuteDTO {
     private String 조문내용;
 
     private List<Map<String,Object>> 항;
-    //private ArrayList<Map<String,String>> 각주; 로 하면 안됨
-//    private Map<String,String> 각주;
-//    private List<String> 참조조문;
-
-    private int page = 1;
-    private int size = 200;//임시
-    private String queryType;
-    private String searchText = "";
 }

@@ -23,7 +23,7 @@ public class ChatServiceImpl implements ChatService {
 		if (i>0){
 			System.out.println(" 하ㅏ하하하" + dto );
 			RestTemplate template = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
-			ResponseEntity<ChatDTO> responseEntity = template.postForEntity("http://localhost:5000/send",dto,ChatDTO.class);
+			ResponseEntity<ChatDTO> responseEntity = template.postForEntity("http://3.39.242.42:5000/send",dto,ChatDTO.class);
 
 			System.out.println(responseEntity.getStatusCode()+" 스태터스코드");
 

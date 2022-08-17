@@ -40,12 +40,13 @@ public class CommentController {
     }
 
     @PostMapping("/delete")
-    public CommentDTO deleteComment(@RequestBody CommentDTO dto) {
+    public int deleteComment(@RequestBody CommentDTO dto) {
         return service.deleteComment(dto);
     }
 
     @PostMapping("/update")
-    public CommentDTO updateComment(@RequestBody CommentDTO dto) {
+    public int updateComment(@RequestBody CommentDTO dto) {
+        System.out.println("업뎃코멘"+dto);
         return service.updateComment(dto);
     }
 }

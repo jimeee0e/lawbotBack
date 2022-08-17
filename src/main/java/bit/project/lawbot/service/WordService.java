@@ -1,12 +1,11 @@
 package bit.project.lawbot.service;
 
 import bit.project.lawbot.domain.MemberDTO;
+import bit.project.lawbot.domain.WordDTO;
+
+import java.util.List;
 
 public interface WordService {
-	public int insertMember(MemberDTO dto);
-	public MemberDTO selectMember(MemberDTO dto);
-	public MemberDTO deleteMember(MemberDTO dto);
-	public int updateMember(MemberDTO dto);
-	public MemberDTO loginMember(MemberDTO dto);
-	public int idCheckMember(MemberDTO dto);
+	public List<WordDTO> selectWordList(WordDTO dto);
+	public WordDTO selectWord(WordDTO dto);
 }

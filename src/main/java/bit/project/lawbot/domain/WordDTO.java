@@ -6,12 +6,8 @@ import java.util.Date;
 
 @Data
 public class WordDTO {
-    private long post_idx;
-    private String category;
-    private String title;
-    private String content;
-    private long member_no;
-    private Date reg_date;
-    private Date update_date;
-    private int islive;
+    private long cloud_idx;
+    private String word;
+    private long count;
+    private Date date;
 }
